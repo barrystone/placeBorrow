@@ -16,6 +16,12 @@ namespace WebApplication8
             convertSelectTime();
         }
 
+
+        protected void Button2_Click(object sender, EventArgs e)
+        {
+            Server.Transfer("index.aspx");
+        }
+
         protected void Button1_Click(object sender, EventArgs e)
         {
             Response.Cookies["羽球場"]["week"] = Server.UrlEncode(DropDownList2.Text);
