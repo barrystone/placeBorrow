@@ -39,7 +39,7 @@
         <br />
         <br />
         <p class="auto-style1">
-            選擇主場地 &gt; 察看與選擇時段與場地位置 &gt; 輸入個人資訊預約</p>
+            選擇主場地 &gt; 查看與選擇時段及場地位置 &gt; 輸入個人資訊預約</p>
         <br />
         <asp:Button ID="Button1" runat="server" Height="40px" OnClick="Button1_Click" Text="下一步" Width="104px" />
         <br />

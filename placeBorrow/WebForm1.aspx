@@ -759,7 +759,7 @@
             <asp:ListItem Value="1">下週</asp:ListItem>
             <asp:ListItem Value="2">下下週</asp:ListItem>
         </asp:DropDownList>
-        &nbsp;&nbsp; 星期幾:
+        &nbsp;&nbsp; 星期:
         <asp:DropDownList ID="DropDownList3" runat="server" AutoPostBack="True" OnSelectedIndexChanged="DropDownList3_SelectedIndexChanged">
             <asp:ListItem Value="1">星期一</asp:ListItem>
             <asp:ListItem Value="2">星期二</asp:ListItem>
@@ -782,6 +782,7 @@
         </div>
         <br />
         <br />
+        選擇預約日期:&nbsp;&nbsp;
         <asp:Label ID="Label1" runat="server" Text="null"></asp:Label>
         <br />
         <p>
