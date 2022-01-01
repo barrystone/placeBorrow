@@ -30,20 +30,22 @@ namespace WebApplication8
             }
             if (CheckBox1.Checked)
             {
-                Response.Cookies["羽球場"]["time1"] ="9:00~12:00";
+                Response.Cookies["羽球場"]["time1"] = "0";
             }
+            else { Response.Cookies["羽球場"]["time1"] = ""; }
             if (CheckBox2.Checked)
             {
-                Response.Cookies["羽球場"]["time2"] = "12:00~15:00";
+                Response.Cookies["羽球場"]["time2"] = "1";
             }
+            else { Response.Cookies["羽球場"]["time2"] = ""; }
             if (CheckBox3.Checked)
             {
-                Response.Cookies["羽球場"]["time3"] = "15:00~18:00";
+                Response.Cookies["羽球場"]["time3"] = "2";
             }
-            Response.Cookies["羽球場"].Expires =
-                                DateTime.Today.AddDays(10);
+            else { Response.Cookies["羽球場"]["time3"] = ""; }
+            Response.Cookies["羽球場"].Expires = DateTime.Today.AddDays(10);
             Response.Cookies["羽球場"]["date"] = Label1.Text;
-            Response.Redirect("Webform2.aspx");
+            Server.Transfer("WebForm2.aspx");
         }
         protected void convertSelectTime()
         {

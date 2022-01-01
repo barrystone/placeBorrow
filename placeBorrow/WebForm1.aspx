@@ -9,15 +9,73 @@
     <style type="text/css">
         .auto-style1 {
             width: 100%;
+            height: 347px;
         }
-        .auto-style2 {
+        .auto-style3 {
             width: 143px;
+            height: 165px;
+        }
+        .auto-style4 {
+            height: 165px;
+        }
+        .auto-style6 {
+            height: 165px;
+            width: 144px;
+        }
+        .auto-style13 {
+            width: 143px;
+            height: 2px;
+        }
+        .auto-style14 {
+            height: 2px;
+            width: 144px;
+        }
+        .auto-style18 {
+            width: 13px;
+            height: 2px;
+        }
+        .auto-style20 {
+            width: 13px;
+            height: 165px;
+        }
+        .auto-style22 {
+            width: 13px;
+            height: 160px;
+        }
+        .auto-style23 {
+            width: 143px;
+            height: 160px;
+        }
+        .auto-style24 {
+            height: 160px;
+        }
+        .auto-style25 {
+            height: 160px;
+            width: 144px;
+        }
+        .auto-style26 {
+            width: 13px;
+            height: 102px;
+        }
+        .auto-style27 {
+            width: 143px;
+            height: 102px;
+        }
+        .auto-style28 {
+            height: 102px;
+        }
+        .auto-style29 {
+            height: 102px;
+            width: 144px;
         }
     </style>
 </head>
 <body>
     <form id="form1" runat="server">
-        <asp:DropDownList ID="DropDownList1" runat="server" AutoPostBack="True" DataSourceID="SqlDataSource1" DataTextField="week" DataValueField="week" Height="19px">
+        <asp:DropDownList ID="DropDownList1" runat="server" AutoPostBack="True" Height="19px">
+            <asp:ListItem Value="0">本週</asp:ListItem>
+            <asp:ListItem Value="1">下週</asp:ListItem>
+            <asp:ListItem Value="2">下下週</asp:ListItem>
         </asp:DropDownList>
         &nbsp;&nbsp; 今日日期:&nbsp;
         <asp:Label ID="Label2" runat="server" Text="null"></asp:Label>
@@ -26,83 +84,527 @@
         </div>
         <table class="auto-style1">
             <tr>
-                <td class="auto-style2">星期一</td>
-                <td class="auto-style2">星期二</td>
-                <td class="auto-style2">星期三</td>
-                <td class="auto-style2">星期四</td>
-                <td class="auto-style2">星期五</td>
+                <td class="auto-style18">&nbsp;</td>
+                <td class="auto-style13">星期一</td>
+                <td class="auto-style13">星期二</td>
+                <td class="auto-style13">星期三</td>
+                <td class="auto-style14">星期四</td>
+                <td class="auto-style13">星期五</td>
             </tr>
             <tr>
-                <td class="auto-style2">
+                <td class="auto-style22">
+                    9:00~12:00</td>
+                <td class="auto-style23">
                     <asp:DetailsView ID="DetailsView1" runat="server" AutoGenerateRows="False" DataSourceID="SqlDataSource2" Height="50px" Width="125px">
                         <Fields>
-                            <asp:BoundField DataField="phone" HeaderText="phone" SortExpression="phone" />
-                            <asp:BoundField DataField="username" HeaderText="username" SortExpression="username" />
                             <asp:BoundField DataField="region" HeaderText="region" SortExpression="region" />
-                            <asp:BoundField DataField="time" HeaderText="time" SortExpression="time" />
+                            <asp:BoundField DataField="username" HeaderText="username" SortExpression="username" />
+                            <asp:BoundField DataField="phone" HeaderText="phone" SortExpression="phone" />
                         </Fields>
                     </asp:DetailsView>
-                    <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT [phone], [username], [region], [time] FROM [Table] WHERE (([region] = @region) AND ([week] = @week) AND ([time] = @time) AND ([week] = @week2))">
+                    <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT [region], [username], [phone] FROM [TEST] WHERE ([region] = @region) AND ([day] = @day) AND ([week] = @week) AND ([time] = @time)">
                         <SelectParameters>
-                            <asp:Parameter DefaultValue="A" Name="region" Type="String" />
-                            <asp:Parameter DefaultValue="本週" Name="week" Type="String" />
-                            <asp:Parameter DefaultValue="9:00~12:00" Name="time" Type="String" />
-                            <asp:ControlParameter ControlID="DropDownList1" Name="week2" PropertyName="SelectedValue" Type="String" />
+                            <asp:Parameter DefaultValue="A" Name="region" />
+                            <asp:Parameter DefaultValue="1" Name="day" />
+                            <asp:ControlParameter ControlID="DropDownList1" DefaultValue="" Name="week" PropertyName="SelectedValue" />
+                            <asp:Parameter DefaultValue="0" Name="time" />
+                        </SelectParameters>
+                    </asp:SqlDataSource>
+                    <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT [region], [username], [phone] FROM [TEST] WHERE ([region] = @region) AND ([day] = @day) AND ([week] = @week) AND ([time] = @time)">
+                        <SelectParameters>
+                            <asp:Parameter DefaultValue="B" Name="region" />
+                            <asp:Parameter DefaultValue="1" Name="day" />
+                            <asp:ControlParameter ControlID="DropDownList1" DefaultValue="" Name="week" PropertyName="SelectedValue" />
+                            <asp:Parameter DefaultValue="0" Name="time" />
                         </SelectParameters>
                     </asp:SqlDataSource>
                     <asp:DetailsView ID="DetailsView2" runat="server" AutoGenerateRows="False" DataSourceID="SqlDataSource3" Height="50px" Width="125px">
                         <Fields>
-                            <asp:BoundField DataField="phone" HeaderText="phone" SortExpression="phone" />
-                            <asp:BoundField DataField="username" HeaderText="username" SortExpression="username" />
                             <asp:BoundField DataField="region" HeaderText="region" SortExpression="region" />
+                            <asp:BoundField DataField="username" HeaderText="username" SortExpression="username" />
+                            <asp:BoundField DataField="phone" HeaderText="phone" SortExpression="phone" />
                         </Fields>
                     </asp:DetailsView>
-                    <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT [phone], [username], [region] FROM [Table] WHERE ([week] = @week) AND ([region]='B') AND ([day]='星期一') AND ([time]='9:00~12:00')">
+                </td>
+                <td class="auto-style24">
+                    <asp:DetailsView ID="DetailsView3" runat="server" DataSourceID="SqlDataSource4" Height="51px" Width="125px" AutoGenerateRows="False">
+                        <Fields>
+                            <asp:BoundField DataField="region" HeaderText="region" SortExpression="region" />
+                            <asp:BoundField DataField="username" HeaderText="username" SortExpression="username" />
+                            <asp:BoundField DataField="phone" HeaderText="phone" SortExpression="phone" />
+                        </Fields>
+                    </asp:DetailsView>
+                    <asp:SqlDataSource ID="SqlDataSource4" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT [region], [username], [phone] FROM [TEST] WHERE ([region] = @region) AND ([day] = @day) AND ([week] = @week) AND ([time] = @time)">
                         <SelectParameters>
-                            <asp:Parameter Name="week" />
+                            <asp:Parameter DefaultValue="A" Name="region" />
+                            <asp:Parameter DefaultValue="2" Name="day" />
+                            <asp:ControlParameter ControlID="DropDownList1" DefaultValue="" Name="week" PropertyName="SelectedValue" />
+                            <asp:Parameter DefaultValue="0" Name="time" />
                         </SelectParameters>
                     </asp:SqlDataSource>
+                    <asp:SqlDataSource ID="SqlDataSource5" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT [region], [username], [phone] FROM [TEST] WHERE ([region] = @region) AND ([day] = @day) AND ([week] = @week) AND ([time] = @time)">
+                        <SelectParameters>
+                            <asp:Parameter DefaultValue="B" Name="region" />
+                            <asp:Parameter DefaultValue="2" Name="day" />
+                            <asp:ControlParameter ControlID="DropDownList1" Name="week" PropertyName="SelectedValue" />
+                            <asp:Parameter DefaultValue="0" Name="time" />
+                        </SelectParameters>
+                    </asp:SqlDataSource>
+                    <asp:DetailsView ID="DetailsView4" runat="server" DataSourceID="SqlDataSource5" Height="50px" Width="125px" AutoGenerateRows="False">
+                        <Fields>
+                            <asp:BoundField DataField="region" HeaderText="region" SortExpression="region" />
+                            <asp:BoundField DataField="username" HeaderText="username" SortExpression="username" />
+                            <asp:BoundField DataField="phone" HeaderText="phone" SortExpression="phone" />
+                        </Fields>
+                    </asp:DetailsView>
                 </td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
+                <td class="auto-style24">
+                    <asp:DetailsView ID="DetailsView5" runat="server" DataSourceID="SqlDataSource6" Height="50px" Width="125px" AutoGenerateRows="False">
+                        <Fields>
+                            <asp:BoundField DataField="region" HeaderText="region" SortExpression="region" />
+                            <asp:BoundField DataField="username" HeaderText="username" SortExpression="username" />
+                            <asp:BoundField DataField="phone" HeaderText="phone" SortExpression="phone" />
+                        </Fields>
+                    </asp:DetailsView>
+                    <asp:SqlDataSource ID="SqlDataSource6" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT [region], [username], [phone] FROM [TEST] WHERE ([region] = @region) AND ([day] = @day) AND ([week] = @week) AND ([time] = @time)">
+                        <SelectParameters>
+                            <asp:Parameter DefaultValue="A" Name="region" />
+                            <asp:Parameter DefaultValue="3" Name="day" />
+                            <asp:ControlParameter ControlID="DropDownList1" DefaultValue="" Name="week" PropertyName="SelectedValue" />
+                            <asp:Parameter DefaultValue="0" Name="time" />
+                        </SelectParameters>
+                    </asp:SqlDataSource>
+                    <asp:SqlDataSource ID="SqlDataSource7" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT [region], [username], [phone] FROM [TEST] WHERE ([region] = @region) AND ([day] = @day) AND ([week] = @week) AND ([time] = @time)">
+                        <SelectParameters>
+                            <asp:Parameter DefaultValue="B" Name="region" />
+                            <asp:Parameter DefaultValue="3" Name="day" />
+                            <asp:ControlParameter ControlID="DropDownList1" DefaultValue="" Name="week" PropertyName="SelectedValue" />
+                            <asp:Parameter DefaultValue="0" Name="time" />
+                        </SelectParameters>
+                    </asp:SqlDataSource>
+                    <asp:DetailsView ID="DetailsView6" runat="server" DataSourceID="SqlDataSource7" Height="50px" Width="125px" AutoGenerateRows="False">
+                        <Fields>
+                            <asp:BoundField DataField="region" HeaderText="region" SortExpression="region" />
+                            <asp:BoundField DataField="username" HeaderText="username" SortExpression="username" />
+                            <asp:BoundField DataField="phone" HeaderText="phone" SortExpression="phone" />
+                        </Fields>
+                    </asp:DetailsView>
+                </td>
+                <td class="auto-style25">
+                    <asp:DetailsView ID="DetailsView7" runat="server" DataSourceID="SqlDataSource8" Height="50px" Width="125px" AutoGenerateRows="False">
+                        <Fields>
+                            <asp:BoundField DataField="region" HeaderText="region" SortExpression="region" />
+                            <asp:BoundField DataField="username" HeaderText="username" SortExpression="username" />
+                            <asp:BoundField DataField="phone" HeaderText="phone" SortExpression="phone" />
+                        </Fields>
+                    </asp:DetailsView>
+                    <asp:SqlDataSource ID="SqlDataSource8" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT [region], [username], [phone] FROM [TEST] WHERE ([region] = @region) AND ([day] = @day) AND ([week] = @week) AND ([time] = @time)">
+                        <SelectParameters>
+                            <asp:Parameter DefaultValue="A" Name="region" />
+                            <asp:Parameter DefaultValue="4" Name="day" />
+                            <asp:ControlParameter ControlID="DropDownList1" DefaultValue="" Name="week" PropertyName="SelectedValue" />
+                            <asp:Parameter DefaultValue="0" Name="time" />
+                        </SelectParameters>
+                    </asp:SqlDataSource>
+                    <asp:SqlDataSource ID="SqlDataSource9" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT [region], [username], [phone] FROM [TEST] WHERE ([region] = @region) AND ([day] = @day) AND ([week] = @week) AND ([time] = @time)">
+                        <SelectParameters>
+                            <asp:Parameter DefaultValue="B" Name="region" />
+                            <asp:Parameter DefaultValue="4" Name="day" />
+                            <asp:ControlParameter ControlID="DropDownList1" Name="week" PropertyName="SelectedValue" />
+                            <asp:Parameter DefaultValue="0" Name="time" />
+                        </SelectParameters>
+                    </asp:SqlDataSource>
+                    <asp:DetailsView ID="DetailsView8" runat="server" DataSourceID="SqlDataSource9" Height="50px" Width="125px" AutoGenerateRows="False">
+                        <Fields>
+                            <asp:BoundField DataField="region" HeaderText="region" SortExpression="region" />
+                            <asp:BoundField DataField="username" HeaderText="username" SortExpression="username" />
+                            <asp:BoundField DataField="phone" HeaderText="phone" SortExpression="phone" />
+                        </Fields>
+                    </asp:DetailsView>
+                </td>
+                <td class="auto-style24">
+                    <asp:DetailsView ID="DetailsView9" runat="server" DataSourceID="SqlDataSource10" Height="50px" Width="125px" AutoGenerateRows="False">
+                        <Fields>
+                            <asp:BoundField DataField="region" HeaderText="region" SortExpression="region" />
+                            <asp:BoundField DataField="username" HeaderText="username" SortExpression="username" />
+                            <asp:BoundField DataField="phone" HeaderText="phone" SortExpression="phone" />
+                        </Fields>
+                    </asp:DetailsView>
+                    <asp:SqlDataSource ID="SqlDataSource10" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT [region], [username], [phone] FROM [TEST] WHERE ([region] = @region) AND ([day] = @day) AND ([week] = @week) AND ([time] = @time)">
+                        <SelectParameters>
+                            <asp:Parameter DefaultValue="A" Name="region" />
+                            <asp:Parameter DefaultValue="5" Name="day" />
+                            <asp:ControlParameter ControlID="DropDownList1" DefaultValue="" Name="week" PropertyName="SelectedValue" />
+                            <asp:Parameter DefaultValue="0" Name="time" />
+                        </SelectParameters>
+                    </asp:SqlDataSource>
+                    <asp:SqlDataSource ID="SqlDataSource11" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT [region], [username], [phone] FROM [TEST] WHERE ([region] = @region) AND ([day] = @day) AND ([week] = @week) AND ([time] = @time)">
+                        <SelectParameters>
+                            <asp:Parameter DefaultValue="B" Name="region" />
+                            <asp:Parameter DefaultValue="5" Name="day" />
+                            <asp:ControlParameter ControlID="DropDownList1" DefaultValue="" Name="week" PropertyName="SelectedValue" />
+                            <asp:Parameter DefaultValue="0" Name="time" />
+                        </SelectParameters>
+                    </asp:SqlDataSource>
+                    <asp:DetailsView ID="DetailsView10" runat="server" DataSourceID="SqlDataSource11" Height="50px" Width="125px" AutoGenerateRows="False">
+                        <Fields>
+                            <asp:BoundField DataField="region" HeaderText="region" SortExpression="region" />
+                            <asp:BoundField DataField="username" HeaderText="username" SortExpression="username" />
+                            <asp:BoundField DataField="phone" HeaderText="phone" SortExpression="phone" />
+                        </Fields>
+                    </asp:DetailsView>
+                </td>
             </tr>
             <tr>
-                <td class="auto-style2">&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
+                <td class="auto-style20">
+                    12:00~15:00</td>
+                <td class="auto-style3">
+                    <asp:DetailsView ID="DetailsView11" runat="server" DataSourceID="SqlDataSource12" Height="50px" Width="125px" AutoGenerateRows="False">
+                        <Fields>
+                            <asp:BoundField DataField="region" HeaderText="region" SortExpression="region" />
+                            <asp:BoundField DataField="username" HeaderText="username" SortExpression="username" />
+                            <asp:BoundField DataField="phone" HeaderText="phone" SortExpression="phone" />
+                        </Fields>
+                    </asp:DetailsView>
+                    <asp:SqlDataSource ID="SqlDataSource12" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT [region], [username], [phone] FROM [TEST] WHERE ([region] = @region) AND ([day] = @day) AND ([week] = @week) AND ([time] = @time)">
+                        <SelectParameters>
+                            <asp:Parameter DefaultValue="A" Name="region" />
+                            <asp:Parameter DefaultValue="1" Name="day" />
+                            <asp:ControlParameter ControlID="DropDownList1" Name="week" PropertyName="SelectedValue" />
+                            <asp:Parameter DefaultValue="1" Name="time" />
+                        </SelectParameters>
+                    </asp:SqlDataSource>
+                    <asp:SqlDataSource ID="SqlDataSource13" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT [region], [username], [phone] FROM [TEST] WHERE ([region] = @region) AND ([day] = @day) AND ([week] = @week) AND ([time] = @time)">
+                        <SelectParameters>
+                            <asp:Parameter DefaultValue="B" Name="region" />
+                            <asp:Parameter DefaultValue="1" Name="day" />
+                            <asp:ControlParameter ControlID="DropDownList1" DefaultValue="" Name="week" PropertyName="SelectedValue" />
+                            <asp:Parameter DefaultValue="1" Name="time" />
+                        </SelectParameters>
+                    </asp:SqlDataSource>
+                    <asp:DetailsView ID="DetailsView12" runat="server" DataSourceID="SqlDataSource13" Height="50px" Width="125px" AutoGenerateRows="False">
+                        <Fields>
+                            <asp:BoundField DataField="region" HeaderText="region" SortExpression="region" />
+                            <asp:BoundField DataField="username" HeaderText="username" SortExpression="username" />
+                            <asp:BoundField DataField="phone" HeaderText="phone" SortExpression="phone" />
+                        </Fields>
+                    </asp:DetailsView>
+                </td>
+                <td class="auto-style4">
+                    <asp:DetailsView ID="DetailsView13" runat="server" DataSourceID="SqlDataSource14" Height="50px" Width="125px" AutoGenerateRows="False">
+                        <Fields>
+                            <asp:BoundField DataField="region" HeaderText="region" SortExpression="region" />
+                            <asp:BoundField DataField="username" HeaderText="username" SortExpression="username" />
+                            <asp:BoundField DataField="phone" HeaderText="phone" SortExpression="phone" />
+                        </Fields>
+                    </asp:DetailsView>
+                    <asp:SqlDataSource ID="SqlDataSource14" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT [region], [username], [phone] FROM [TEST] WHERE ([region] = @region) AND ([day] = @day) AND ([week] = @week) AND ([time] = @time)">
+                        <SelectParameters>
+                            <asp:Parameter DefaultValue="A" Name="region" />
+                            <asp:Parameter DefaultValue="2" Name="day" />
+                            <asp:ControlParameter ControlID="DropDownList1" DefaultValue="" Name="week" PropertyName="SelectedValue" />
+                            <asp:Parameter DefaultValue="1" Name="time" />
+                        </SelectParameters>
+                    </asp:SqlDataSource>
+                    <asp:SqlDataSource ID="SqlDataSource15" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT [region], [username], [phone] FROM [TEST] WHERE ([region] = @region) AND ([day] = @day) AND ([week] = @week) AND ([time] = @time)">
+                        <SelectParameters>
+                            <asp:Parameter DefaultValue="B" Name="region" />
+                            <asp:Parameter DefaultValue="2" Name="day" />
+                            <asp:ControlParameter ControlID="DropDownList1" DefaultValue="" Name="week" PropertyName="SelectedValue" />
+                            <asp:Parameter DefaultValue="1" Name="time" />
+                        </SelectParameters>
+                    </asp:SqlDataSource>
+                    <asp:DetailsView ID="DetailsView14" runat="server" DataSourceID="SqlDataSource15" Height="50px" Width="125px" AutoGenerateRows="False">
+                        <Fields>
+                            <asp:BoundField DataField="region" HeaderText="region" SortExpression="region" />
+                            <asp:BoundField DataField="username" HeaderText="username" SortExpression="username" />
+                            <asp:BoundField DataField="phone" HeaderText="phone" SortExpression="phone" />
+                        </Fields>
+                    </asp:DetailsView>
+                </td>
+                <td class="auto-style4">
+                    <asp:DetailsView ID="DetailsView15" runat="server" DataSourceID="SqlDataSource16" Height="50px" Width="125px" AutoGenerateRows="False">
+                        <Fields>
+                            <asp:BoundField DataField="region" HeaderText="region" SortExpression="region" />
+                            <asp:BoundField DataField="username" HeaderText="username" SortExpression="username" />
+                            <asp:BoundField DataField="phone" HeaderText="phone" SortExpression="phone" />
+                        </Fields>
+                    </asp:DetailsView>
+                    <asp:SqlDataSource ID="SqlDataSource16" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT [region], [username], [phone] FROM [TEST] WHERE ([region] = @region) AND ([day] = @day) AND ([week] = @week) AND ([time] = @time)">
+                        <SelectParameters>
+                            <asp:Parameter DefaultValue="A" Name="region" />
+                            <asp:Parameter DefaultValue="3" Name="day" />
+                            <asp:ControlParameter ControlID="DropDownList1" DefaultValue="" Name="week" PropertyName="SelectedValue" />
+                            <asp:Parameter DefaultValue="1" Name="time" />
+                        </SelectParameters>
+                    </asp:SqlDataSource>
+                    <asp:SqlDataSource ID="SqlDataSource17" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT [region], [username], [phone] FROM [TEST] WHERE ([region] = @region) AND ([day] = @day) AND ([week] = @week) AND ([time] = @time)">
+                        <SelectParameters>
+                            <asp:Parameter DefaultValue="B" Name="region" />
+                            <asp:Parameter DefaultValue="3" Name="day" />
+                            <asp:ControlParameter ControlID="DropDownList1" DefaultValue="" Name="week" PropertyName="SelectedValue" />
+                            <asp:Parameter DefaultValue="1" Name="time" />
+                        </SelectParameters>
+                    </asp:SqlDataSource>
+                    <asp:DetailsView ID="DetailsView16" runat="server" DataSourceID="SqlDataSource17" Height="50px" Width="125px" AutoGenerateRows="False">
+                        <Fields>
+                            <asp:BoundField DataField="region" HeaderText="region" SortExpression="region" />
+                            <asp:BoundField DataField="username" HeaderText="username" SortExpression="username" />
+                            <asp:BoundField DataField="phone" HeaderText="phone" SortExpression="phone" />
+                        </Fields>
+                    </asp:DetailsView>
+                </td>
+                <td class="auto-style6">
+                    <asp:DetailsView ID="DetailsView17" runat="server" DataSourceID="SqlDataSource18" Height="50px" Width="125px" AutoGenerateRows="False">
+                        <Fields>
+                            <asp:BoundField DataField="region" HeaderText="region" SortExpression="region" />
+                            <asp:BoundField DataField="username" HeaderText="username" SortExpression="username" />
+                            <asp:BoundField DataField="phone" HeaderText="phone" SortExpression="phone" />
+                        </Fields>
+                    </asp:DetailsView>
+                    <asp:SqlDataSource ID="SqlDataSource18" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT [region], [username], [phone] FROM [TEST] WHERE ([region] = @region) AND ([day] = @day) AND ([week] = @week) AND ([time] = @time)">
+                        <SelectParameters>
+                            <asp:Parameter DefaultValue="A" Name="region" />
+                            <asp:Parameter DefaultValue="4" Name="day" />
+                            <asp:ControlParameter ControlID="DropDownList1" DefaultValue="" Name="week" PropertyName="SelectedValue" />
+                            <asp:Parameter DefaultValue="1" Name="time" />
+                        </SelectParameters>
+                    </asp:SqlDataSource>
+                    <asp:SqlDataSource ID="SqlDataSource19" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT [region], [username], [phone] FROM [TEST] WHERE ([region] = @region) AND ([day] = @day) AND ([week] = @week) AND ([time] = @time)">
+                        <SelectParameters>
+                            <asp:Parameter DefaultValue="B" Name="region" />
+                            <asp:Parameter DefaultValue="4" Name="day" />
+                            <asp:ControlParameter ControlID="DropDownList1" DefaultValue="" Name="week" PropertyName="SelectedValue" />
+                            <asp:Parameter DefaultValue="1" Name="time" />
+                        </SelectParameters>
+                    </asp:SqlDataSource>
+                    <asp:DetailsView ID="DetailsView18" runat="server" DataSourceID="SqlDataSource19" Height="50px" Width="125px" AutoGenerateRows="False">
+                        <Fields>
+                            <asp:BoundField DataField="region" HeaderText="region" SortExpression="region" />
+                            <asp:BoundField DataField="username" HeaderText="username" SortExpression="username" />
+                            <asp:BoundField DataField="phone" HeaderText="phone" SortExpression="phone" />
+                        </Fields>
+                    </asp:DetailsView>
+                </td>
+                <td class="auto-style4">
+                    <asp:DetailsView ID="DetailsView19" runat="server" DataSourceID="SqlDataSource20" Height="50px" Width="125px" AutoGenerateRows="False">
+                        <Fields>
+                            <asp:BoundField DataField="region" HeaderText="region" SortExpression="region" />
+                            <asp:BoundField DataField="username" HeaderText="username" SortExpression="username" />
+                            <asp:BoundField DataField="phone" HeaderText="phone" SortExpression="phone" />
+                        </Fields>
+                    </asp:DetailsView>
+                    <asp:SqlDataSource ID="SqlDataSource20" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT [region], [username], [phone] FROM [TEST] WHERE ([region] = @region) AND ([day] = @day) AND ([week] = @week) AND ([time] = @time)">
+                        <SelectParameters>
+                            <asp:Parameter DefaultValue="A" Name="region" />
+                            <asp:Parameter DefaultValue="5" Name="day" />
+                            <asp:ControlParameter ControlID="DropDownList1" DefaultValue="" Name="week" PropertyName="SelectedValue" />
+                            <asp:Parameter Name="time" DefaultValue="1" />
+                        </SelectParameters>
+                    </asp:SqlDataSource>
+                    <asp:SqlDataSource ID="SqlDataSource21" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT [region], [username], [phone] FROM [TEST] WHERE ([region] = @region) AND ([day] = @day) AND ([week] = @week) AND ([time] = @time)">
+                        <SelectParameters>
+                            <asp:Parameter DefaultValue="B" Name="region" />
+                            <asp:Parameter DefaultValue="5" Name="day" />
+                            <asp:ControlParameter ControlID="DropDownList1" DefaultValue="" Name="week" PropertyName="SelectedValue" />
+                            <asp:Parameter DefaultValue="1" Name="time" />
+                        </SelectParameters>
+                    </asp:SqlDataSource>
+                    <asp:DetailsView ID="DetailsView20" runat="server" DataSourceID="SqlDataSource21" Height="50px" Width="125px" AutoGenerateRows="False">
+                        <Fields>
+                            <asp:BoundField DataField="region" HeaderText="region" SortExpression="region" />
+                            <asp:BoundField DataField="username" HeaderText="username" SortExpression="username" />
+                            <asp:BoundField DataField="phone" HeaderText="phone" SortExpression="phone" />
+                        </Fields>
+                    </asp:DetailsView>
+                </td>
             </tr>
             <tr>
-                <td class="auto-style2">&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
+                <td class="auto-style26">
+                    15:00~18:00</td>
+                <td class="auto-style27">
+                    <asp:DetailsView ID="DetailsView21" runat="server" DataSourceID="SqlDataSource22" Height="50px" Width="125px" AutoGenerateRows="False">
+                        <Fields>
+                            <asp:BoundField DataField="region" HeaderText="region" SortExpression="region" />
+                            <asp:BoundField DataField="username" HeaderText="username" SortExpression="username" />
+                            <asp:BoundField DataField="phone" HeaderText="phone" SortExpression="phone" />
+                        </Fields>
+                    </asp:DetailsView>
+                    <asp:SqlDataSource ID="SqlDataSource22" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT [region], [username], [phone] FROM [TEST] WHERE ([region] = @region) AND ([day] = @day) AND ([week] = @week) AND ([time] = @time)">
+                        <SelectParameters>
+                            <asp:Parameter DefaultValue="A" Name="region" />
+                            <asp:Parameter DefaultValue="1" Name="day" />
+                            <asp:ControlParameter ControlID="DropDownList1" DefaultValue="" Name="week" PropertyName="SelectedValue" />
+                            <asp:Parameter DefaultValue="2" Name="time" />
+                        </SelectParameters>
+                    </asp:SqlDataSource>
+                    <asp:SqlDataSource ID="SqlDataSource23" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT [region], [username], [phone] FROM [TEST] WHERE ([region] = @region) AND ([day] = @day) AND ([week] = @week) AND ([time] = @time)">
+                        <SelectParameters>
+                            <asp:Parameter DefaultValue="B" Name="region" />
+                            <asp:Parameter DefaultValue="1" Name="day" />
+                            <asp:ControlParameter ControlID="DropDownList1" DefaultValue="" Name="week" PropertyName="SelectedValue" />
+                            <asp:Parameter DefaultValue="2" Name="time" />
+                        </SelectParameters>
+                    </asp:SqlDataSource>
+                    <asp:DetailsView ID="DetailsView22" runat="server" DataSourceID="SqlDataSource23" Height="50px" Width="125px" AutoGenerateRows="False">
+                        <Fields>
+                            <asp:BoundField DataField="region" HeaderText="region" SortExpression="region" />
+                            <asp:BoundField DataField="username" HeaderText="username" SortExpression="username" />
+                            <asp:BoundField DataField="phone" HeaderText="phone" SortExpression="phone" />
+                        </Fields>
+                    </asp:DetailsView>
+                </td>
+                <td class="auto-style28">
+                    <asp:DetailsView ID="DetailsView23" runat="server" DataSourceID="SqlDataSource24" Height="50px" Width="125px" AutoGenerateRows="False">
+                        <Fields>
+                            <asp:BoundField DataField="region" HeaderText="region" SortExpression="region" />
+                            <asp:BoundField DataField="username" HeaderText="username" SortExpression="username" />
+                            <asp:BoundField DataField="phone" HeaderText="phone" SortExpression="phone" />
+                        </Fields>
+                    </asp:DetailsView>
+                    <asp:SqlDataSource ID="SqlDataSource24" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT [region], [username], [phone] FROM [TEST] WHERE ([region] = @region) AND ([day] = @day) AND ([week] = @week) AND ([time] = @time)">
+                        <SelectParameters>
+                            <asp:Parameter DefaultValue="A" Name="region" />
+                            <asp:Parameter DefaultValue="2" Name="day" />
+                            <asp:ControlParameter ControlID="DropDownList1" DefaultValue="" Name="week" PropertyName="SelectedValue" />
+                            <asp:Parameter DefaultValue="2" Name="time" />
+                        </SelectParameters>
+                    </asp:SqlDataSource>
+                    <asp:SqlDataSource ID="SqlDataSource25" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT [region], [username], [phone] FROM [TEST] WHERE ([region] = @region) AND ([day] = @day) AND ([week] = @week) AND ([time] = @time)">
+                        <SelectParameters>
+                            <asp:Parameter DefaultValue="B" Name="region" />
+                            <asp:Parameter DefaultValue="2" Name="day" />
+                            <asp:ControlParameter ControlID="DropDownList1" DefaultValue="" Name="week" PropertyName="SelectedValue" />
+                            <asp:Parameter DefaultValue="2" Name="time" />
+                        </SelectParameters>
+                    </asp:SqlDataSource>
+                    <asp:DetailsView ID="DetailsView24" runat="server" DataSourceID="SqlDataSource25" Height="50px" Width="125px" AutoGenerateRows="False">
+                        <Fields>
+                            <asp:BoundField DataField="region" HeaderText="region" SortExpression="region" />
+                            <asp:BoundField DataField="username" HeaderText="username" SortExpression="username" />
+                            <asp:BoundField DataField="phone" HeaderText="phone" SortExpression="phone" />
+                        </Fields>
+                    </asp:DetailsView>
+                </td>
+                <td class="auto-style28">
+                    <asp:DetailsView ID="DetailsView25" runat="server" DataSourceID="SqlDataSource26" Height="50px" Width="125px" AutoGenerateRows="False">
+                        <Fields>
+                            <asp:BoundField DataField="region" HeaderText="region" SortExpression="region" />
+                            <asp:BoundField DataField="username" HeaderText="username" SortExpression="username" />
+                            <asp:BoundField DataField="phone" HeaderText="phone" SortExpression="phone" />
+                        </Fields>
+                    </asp:DetailsView>
+                    <asp:SqlDataSource ID="SqlDataSource26" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT [region], [username], [phone] FROM [TEST] WHERE ([region] = @region) AND ([day] = @day) AND ([week] = @week) AND ([time] = @time)">
+                        <SelectParameters>
+                            <asp:Parameter DefaultValue="A" Name="region" />
+                            <asp:Parameter DefaultValue="3" Name="day" />
+                            <asp:ControlParameter ControlID="DropDownList1" DefaultValue="" Name="week" PropertyName="SelectedValue" />
+                            <asp:Parameter DefaultValue="2" Name="time" />
+                        </SelectParameters>
+                    </asp:SqlDataSource>
+                    <asp:SqlDataSource ID="SqlDataSource27" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT [region], [username], [phone] FROM [TEST] WHERE ([region] = @region) AND ([day] = @day) AND ([week] = @week) AND ([time] = @time)">
+                        <SelectParameters>
+                            <asp:Parameter DefaultValue="B" Name="region" />
+                            <asp:Parameter DefaultValue="3" Name="day" />
+                            <asp:ControlParameter ControlID="DropDownList1" DefaultValue="" Name="week" PropertyName="SelectedValue" />
+                            <asp:Parameter DefaultValue="2" Name="time" />
+                        </SelectParameters>
+                    </asp:SqlDataSource>
+                    <asp:DetailsView ID="DetailsView26" runat="server" DataSourceID="SqlDataSource27" Height="50px" Width="125px" AutoGenerateRows="False">
+                        <Fields>
+                            <asp:BoundField DataField="region" HeaderText="region" SortExpression="region" />
+                            <asp:BoundField DataField="username" HeaderText="username" SortExpression="username" />
+                            <asp:BoundField DataField="phone" HeaderText="phone" SortExpression="phone" />
+                        </Fields>
+                    </asp:DetailsView>
+                </td>
+                <td class="auto-style29">
+                    <asp:DetailsView ID="DetailsView27" runat="server" DataSourceID="SqlDataSource28" Height="50px" Width="125px" AutoGenerateRows="False">
+                        <Fields>
+                            <asp:BoundField DataField="region" HeaderText="region" SortExpression="region" />
+                            <asp:BoundField DataField="username" HeaderText="username" SortExpression="username" />
+                            <asp:BoundField DataField="phone" HeaderText="phone" SortExpression="phone" />
+                        </Fields>
+                    </asp:DetailsView>
+                    <asp:SqlDataSource ID="SqlDataSource28" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT [region], [username], [phone] FROM [TEST] WHERE ([region] = @region) AND ([day] = @day) AND ([week] = @week) AND ([time] = @time)">
+                        <SelectParameters>
+                            <asp:Parameter DefaultValue="A" Name="region" />
+                            <asp:Parameter DefaultValue="4" Name="day" />
+                            <asp:ControlParameter ControlID="DropDownList1" DefaultValue="" Name="week" PropertyName="SelectedValue" />
+                            <asp:Parameter DefaultValue="2" Name="time" />
+                        </SelectParameters>
+                    </asp:SqlDataSource>
+                    <asp:SqlDataSource ID="SqlDataSource29" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT [region], [username], [phone] FROM [TEST] WHERE ([region] = @region) AND ([day] = @day) AND ([week] = @week) AND ([time] = @time)">
+                        <SelectParameters>
+                            <asp:Parameter DefaultValue="B" Name="region" />
+                            <asp:Parameter DefaultValue="4" Name="day" />
+                            <asp:ControlParameter ControlID="DropDownList1" DefaultValue="" Name="week" PropertyName="SelectedValue" />
+                            <asp:Parameter DefaultValue="2" Name="time" />
+                        </SelectParameters>
+                    </asp:SqlDataSource>
+                    <asp:DetailsView ID="DetailsView28" runat="server" DataSourceID="SqlDataSource29" Height="50px" Width="125px" AutoGenerateRows="False">
+                        <Fields>
+                            <asp:BoundField DataField="region" HeaderText="region" SortExpression="region" />
+                            <asp:BoundField DataField="username" HeaderText="username" SortExpression="username" />
+                            <asp:BoundField DataField="phone" HeaderText="phone" SortExpression="phone" />
+                        </Fields>
+                    </asp:DetailsView>
+                </td>
+                <td class="auto-style28">
+                    <asp:DetailsView ID="DetailsView29" runat="server" DataSourceID="SqlDataSource30" Height="50px" Width="125px" AutoGenerateRows="False">
+                        <Fields>
+                            <asp:BoundField DataField="region" HeaderText="region" SortExpression="region" />
+                            <asp:BoundField DataField="username" HeaderText="username" SortExpression="username" />
+                            <asp:BoundField DataField="phone" HeaderText="phone" SortExpression="phone" />
+                        </Fields>
+                    </asp:DetailsView>
+                    <asp:SqlDataSource ID="SqlDataSource30" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT [region], [username], [phone] FROM [TEST] WHERE ([region] = @region) AND ([day] = @day) AND ([week] = @week) AND ([time] = @time)">
+                        <SelectParameters>
+                            <asp:Parameter DefaultValue="A" Name="region" />
+                            <asp:Parameter DefaultValue="5" Name="day" />
+                            <asp:ControlParameter ControlID="DropDownList1" DefaultValue="" Name="week" PropertyName="SelectedValue" />
+                            <asp:Parameter DefaultValue="2" Name="time" />
+                        </SelectParameters>
+                    </asp:SqlDataSource>
+                    <asp:SqlDataSource ID="SqlDataSource31" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT [region], [username], [phone] FROM [TEST] WHERE ([region] = @region) AND ([day] = @day) AND ([week] = @week) AND ([time] = @time)">
+                        <SelectParameters>
+                            <asp:Parameter DefaultValue="B" Name="region" />
+                            <asp:Parameter DefaultValue="5" Name="day" />
+                            <asp:ControlParameter ControlID="DropDownList1" DefaultValue="" Name="week" PropertyName="SelectedValue" />
+                            <asp:Parameter DefaultValue="2" Name="time" />
+                        </SelectParameters>
+                    </asp:SqlDataSource>
+                    <asp:DetailsView ID="DetailsView30" runat="server" DataSourceID="SqlDataSource31" Height="50px" Width="125px" AutoGenerateRows="False">
+                        <Fields>
+                            <asp:BoundField DataField="region" HeaderText="region" SortExpression="region" />
+                            <asp:BoundField DataField="username" HeaderText="username" SortExpression="username" />
+                            <asp:BoundField DataField="phone" HeaderText="phone" SortExpression="phone" />
+                        </Fields>
+                    </asp:DetailsView>
+                </td>
             </tr>
         </table>
         <asp:DropDownList ID="DropDownList2" runat="server" AutoPostBack="True" OnSelectedIndexChanged="DropDownList2_SelectedIndexChanged">
-            <asp:ListItem>本週</asp:ListItem>
-            <asp:ListItem>下週</asp:ListItem>
-            <asp:ListItem>下下週</asp:ListItem>
+            <asp:ListItem Value="0">本週</asp:ListItem>
+            <asp:ListItem Value="1">下週</asp:ListItem>
+            <asp:ListItem Value="2">下下週</asp:ListItem>
         </asp:DropDownList>
         <asp:DropDownList ID="DropDownList3" runat="server" AutoPostBack="True" OnSelectedIndexChanged="DropDownList3_SelectedIndexChanged">
-            <asp:ListItem>星期一</asp:ListItem>
-            <asp:ListItem>星期二</asp:ListItem>
-            <asp:ListItem>星期三</asp:ListItem>
-            <asp:ListItem>星期四</asp:ListItem>
-            <asp:ListItem>星期五</asp:ListItem>
+            <asp:ListItem Value="1">星期一</asp:ListItem>
+            <asp:ListItem Value="2">星期二</asp:ListItem>
+            <asp:ListItem Value="3">星期三</asp:ListItem>
+            <asp:ListItem Value="4">星期四</asp:ListItem>
+            <asp:ListItem Value="5">星期五</asp:ListItem>
         </asp:DropDownList>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 場地:
         <asp:RadioButton ID="RadioButton1" runat="server" Checked="True" GroupName="region" Text="A" />
         <asp:RadioButton ID="RadioButton2" runat="server" GroupName="region" Text="B" />
         <br />
-        <br />
-&nbsp;<asp:CheckBox ID="CheckBox1" runat="server" Text="9:00~12:00" />
+        <div>
+            <asp:CheckBox ID="CheckBox1" runat="server" Text="9:00~12:00" />
         <asp:CheckBox ID="CheckBox2" runat="server" Text="12:00~15:00" />
         <asp:CheckBox ID="CheckBox3" runat="server" BorderStyle="None" Text="15:00~18:00" />
+        </div>
         <br />
         <br />
         <asp:Label ID="Label1" runat="server" Text="null"></asp:Label>
